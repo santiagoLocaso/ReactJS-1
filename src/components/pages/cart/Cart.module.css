@@ -1,0 +1,11 @@
+.container {
+    background-color: peru;
+}
+
+.title {
+    border: 1px solid red;
+}
+
+.subtitle {
+    color: chartreuse;
+}

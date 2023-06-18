@@ -3,11 +3,11 @@ import CartWidget from '../../common/cartWidget/CartWidget'
 const Navbar = () => {
     return (
         <div>
-            <ul>
-                <li>Inicio</li>
-                <li>Productos</li>
-                <li>Nosotros</li>
-                <li>Contacto</li>
+            <ul style={{display: "flex", justifyContent: "center",flexDirection: "row", listStyle:"none"}}>
+                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Inicio</a></li>
+                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Productos</a></li>
+                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Nosotros</a></li>
+                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Contacto</a></li>
             </ul>
             <CartWidget />
         </div>

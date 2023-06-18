@@ -1,13 +1,12 @@
 import Navbar from "./components/layout/navbar/NavBar"
-import Home from "./components/pages/home/Home"
-import ItemList from "./components/pages/itemList/ItemList"
+// import Home from "./components/pages/home/Home"
+import ItemListContainer from "./components/pages/itemList/ItemListContainer.jsx"
 
 function App() {
   return (
     <div>
-      <h1>HOLA MUNDO</h1>
-      <Home />
-      <ItemList />
+      {/* <Home />*/}
+      <ItemListContainer greeting={"Tecno-Lomas"} />
       <Navbar />
     </div>
   )

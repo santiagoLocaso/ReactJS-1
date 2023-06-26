@@ -5,9 +5,9 @@ import ItemListContainer from "./components/pages/itemList/ItemListContainer.jsx
 function App() {
   return (
     <div>
-      {/* <Home />*/}
-      <ItemListContainer greeting={"Tecno-Lomas"} />
       <Navbar />
+      {/* <Home />*/}
+      <ItemListContainer />
     </div>
   )
 }

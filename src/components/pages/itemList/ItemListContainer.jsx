@@ -11,12 +11,12 @@
 
 // export default ItemListContainer
 
-import { useState } from "react"
-import { stock } from "../../../stock"
-import ItemList from "./ItemList"
-import { useEffect } from "react"
+// import { useState } from "react"
+// import { stock } from "../../../stock"
+// import ItemList from "./ItemList"
+// import { useEffect } from "react"
 
-const ItemListContainer = () => {
+// const ItemListContainer = () => {
 
         // const getData = async () => {
         //     const tarea = new Promise((resolve, reject) => {
@@ -34,22 +34,22 @@ const ItemListContainer = () => {
 
         // getData()
 
-        const [items, setItems] = useState([])
-        const [error, setError] = useState("")
+//         const [items, setItems] = useState([])
+//         const [error, setError] = useState("")
 
-        useEffect( () => {
-            const tarea = new Promise((resolve, reject) => {
-                resolve(stock)
-                reject("salio todo mal")
-            })
+//         useEffect( () => {
+//             const tarea = new Promise((resolve, reject) => {
+//                 resolve(stock)
+//                 reject("salio todo mal")
+//             })
     
-            tarea
-                .then((respuesta) => setItems(respuesta))
-                .catch((error) => setError(error))    
-        } , [])
+//             tarea
+//                 .then((respuesta) => setItems(respuesta))
+//                 .catch((error) => setError(error))    
+//         } , [])
 
 
-    return <ItemList items={items} />
-}
+//     return <ItemList items={items} />
+// }
 
-export default ItemListContainer  
+// export default ItemListContainer  

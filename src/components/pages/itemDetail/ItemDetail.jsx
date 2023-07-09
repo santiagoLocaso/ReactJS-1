@@ -26,8 +26,11 @@ const ItemDetail = () => {
 
   return (
     <div>
-      <h2>{producto.title}</h2>
-      <h4>{producto.price}</h4>
+      <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+        <h2>{producto.title}</h2>
+        <img src={producto.img} alt={producto.title} />
+        <h4>{producto.price}</h4>
+      </div>
 
       <CounterContainer stock={producto.stock} onAdd={onAdd} />
     </div>

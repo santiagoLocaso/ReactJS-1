@@ -12,7 +12,7 @@ const Navbar = () => {
           </Link>
 
           <ul className="categories">
-            <Link to="/" className="links">Todas</Link>
+            <Link to="/" className="links">Inicio</Link>
             <Link to="/category/perifericos" className="links">Perifericos</Link>
             <Link to="/category/monitores" className="links">Monitores</Link>
             <Link to="/category/notebooks" className="links">Notebooks</Link>

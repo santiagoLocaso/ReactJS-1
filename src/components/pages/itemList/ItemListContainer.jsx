@@ -15,7 +15,6 @@ const ItemListContainer = () => {
     );
     const tarea = new Promise((resolve, reject) => {
       resolve(categoryName === undefined ? products : productsFiltrados);
-      //   reject({message: "No autorizado", status: 401})
     });
 
     tarea

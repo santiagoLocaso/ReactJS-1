@@ -34,6 +34,24 @@ export let products = [
         description: "Notebook dell con core i7 9100 ram de 32gb y placa de video RTX 3060",
         category: "notebooks",
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688923185/download_q50qfj.jpg"
-    }
+    },
+    {
+        id: 5,
+        title: "Auriculares Logitech",
+        price: 12000,
+        stock: 10,
+        description: "Auriculares Logitech inalambricos",
+        category: "perifericos",
+        img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688943122/download_n4prru.jpg"
+    },
+    {
+        id: 6,
+        title: "Notebook Lenovo",
+        price: 45000,
+        stock: 10,
+        description: "Notebook Lenovo procesador i5 9100 y 16gb ram",
+        category: "notebooks",
+        img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688943227/download_ayyvlx.jpg"
+    },
 
 ]

@@ -1,55 +1,29 @@
-// const ItemListContainer = ({greeting}) => {
-//     return (
-//         <>
-//             <h1>{greeting}</h1>
-//         </>
-//     )
-// }
+import { useState, useEffect } from "react";
+import { products } from "../../../productsMock";
+import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
+const ItemListContainer = () => {
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState({});
 
-// import CounterContainer from "../../common/counter/CounterContainer"
+  const { categoryName } = useParams();
 
-// export default ItemListContainer
+  useEffect(() => {
+    let productsFiltrados = products.filter(
+      (elemento) => elemento.category === categoryName
+    );
+    const tarea = new Promise((resolve, reject) => {
+      resolve(categoryName === undefined ? products : productsFiltrados);
+      //   reject({message: "No autorizado", status: 401})
+    });
 
-// import { useState } from "react"
-// import { stock } from "../../../stock"
-// import ItemList from "./ItemList"
-// import { useEffect } from "react"
+    tarea
+      .then((respuesta) => setItems(respuesta))
+      .catch((error) => setError(error));
+  }, [categoryName]);
 
-// const ItemListContainer = () => {
+  return <ItemList items={items} />;
+};
 
-        // const getData = async () => {
-        //     const tarea = new Promise((resolve, reject) => {
-        //         resolve("salio todo bien")
-        //         // reject("salio todo mal")
-        //     })
-
-        //     let data = await tarea
-        //     console.log(data);
-
-        //     // tarea
-        //     // .then((respuesta) => console.log(respuesta))
-        //     // .catch((error) => console.log(error))
-        // }
-
-        // getData()
-
-//         const [items, setItems] = useState([])
-//         const [error, setError] = useState("")
-
-//         useEffect( () => {
-//             const tarea = new Promise((resolve, reject) => {
-//                 resolve(stock)
-//                 reject("salio todo mal")
-//             })
-    
-//             tarea
-//                 .then((respuesta) => setItems(respuesta))
-//                 .catch((error) => setError(error))    
-//         } , [])
-
-
-//     return <ItemList items={items} />
-// }
-
-// export default ItemListContainer  
+export default ItemListContainer;

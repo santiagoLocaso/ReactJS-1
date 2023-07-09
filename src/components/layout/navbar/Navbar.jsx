@@ -1,17 +1,28 @@
-import CartWidget from '../../common/cartWidget/CartWidget'
+import { Link } from "react-router-dom";
 
+import CartWidget from "../../common/cartWidget/CartWidget";
+import "./Navbar.css";
 const Navbar = () => {
-    return (
-        <div>
-            <ul style={{display: "flex", justifyContent: "center",flexDirection: "row", listStyle:"none"}}>
-                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Inicio</a></li>
-                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Productos</a></li>
-                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Nosotros</a></li>
-                <li style={{padding: "0 15px"}}><a href="" style={{textDecoration: "none", color: "black"}}>Contacto</a></li>
-            </ul>
-            <CartWidget />
-        </div>
-    )
-}
+  return (
+    <div>
+      <div>
+        <div className={"containerNavbar"}>
+          <Link to="/" style={{textDecoration: "none", color: "black", fontSize: "30px"}}>
+            <h4 >TecnoLomas</h4>
+          </Link>
 
-export default Navbar
+          <ul className="categories">
+            <Link to="/" className="links">Todas</Link>
+            <Link to="/category/perifericos" className="links">Perifericos</Link>
+            <Link to="/category/monitores" className="links">Monitores</Link>
+            <Link to="/category/notebooks" className="links">Notebooks</Link>
+          </ul>
+
+          <CartWidget />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

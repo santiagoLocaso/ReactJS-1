@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const Counter = ( {contador, sumar, restar, onAdd} ) => {
 
   return (

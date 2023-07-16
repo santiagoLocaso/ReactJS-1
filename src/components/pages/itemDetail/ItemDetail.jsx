@@ -35,9 +35,9 @@ const ItemDetail = () => {
   return (
     <div>
       <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-        <h2>{producto.title}</h2>
-        <img src={producto.img} alt={producto.title} />
-        <h4>{producto.price}</h4>
+        <h2 style={{padding: "20px"}}>{producto.title}</h2>
+        <img style={{width: "20%"}} src={producto.img} alt={producto.title} />
+        <h4 style={{fontSize: "25px"}}>$ {producto.price}</h4>
       </div>
 
       <CounterContainer stock={producto.stock} onAdd={onAdd} />

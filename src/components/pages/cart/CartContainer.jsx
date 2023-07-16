@@ -1,20 +1,23 @@
 import { useContext } from "react"
 import { CartContext } from "../../../context/CartContext"
 
+import "./CartContainer.css"
+
 const CartContainer = () => {
 
   const {cart, clearCart, deleteById } = useContext(CartContext)
   
   return (
-      <div>
-          <h1>Carritoooo</h1>
+      <div className="cartSection">
 
           {
             cart.map((element)=> {
-              return <div key={element.id}>
-                <h4>{element.title}</h4>
-                <h5>{element.price}</h5>
-                <h5>{element.quantity}</h5>
+              return <div className="cartContainer" key={element.id}>
+                
+                <h4 className="productDesc">{element.title}</h4>
+                <h5 className="productDesc">$ {element.price}</h5>
+                <h5 className="productDesc">{element.quantity}</h5>
+                <img src={element.img} alt="" />
                 <button onClick={()=>deleteById(element.id)}>eliminar</button>
               </div>
             })

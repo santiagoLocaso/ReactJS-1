@@ -7,19 +7,19 @@ import { CartContext } from '../../../context/CartContext';
 
 const CartWidget = () => {
 
-    const {cart} = useContext(CartContext)
-
+    const {getTotalQuantity} = useContext(CartContext)
+    let total = getTotalQuantity()
     return (
-        // <div style={{display: "flex", justifyContent: "flex-end", paddingRight: "35px", paddingBottom: "20px"}}>
-        //     <BsFillCartCheckFill color='red' size={40}/>
-        // </div>
-        <Link to="/cart">
+        <>
+            <Link to="/cart">
                 <div style={{display: "flex", justifyContent: "flex-end", paddingRight: "35px", paddingBottom: "20px"}}>
-                    <Badge badgeContent={cart.length} color="primary">
+                    <Badge badgeContent={total} color="primary">
                         <ShoppingCartIcon color='black' />
                     </Badge>
                 </div>
-        </Link>
+            </Link>
+        </>
+
     )
 }
 

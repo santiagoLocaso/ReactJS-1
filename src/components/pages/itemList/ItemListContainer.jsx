@@ -1,45 +1,35 @@
 import { useState, useEffect } from "react";
-import { products } from "../../../productsMock";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-// import PacmanLoader from "react-spinners/PacmanLoader";
-
-// const stylesLoader = {
-//   display:"block"
-// };
+import { db } from "../../../firabaseConfig";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState({});
 
   const { categoryName } = useParams();
 
   useEffect(() => {
-    let productsFiltrados = products.filter(
-      (elemento) => elemento.category === categoryName
-    );
-    const tarea = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(categoryName === undefined ? products : productsFiltrados);
-      }, 500)
-    });
 
-    tarea
-      .then((respuesta) => setItems(respuesta))
-      .catch((error) => setError(error));
+    let productsCollection = collection(db, "products")
+    
+    let consulta;
+    if(categoryName){
+      consulta = query( productsCollection, where("category", "==", categoryName))
+    }else{
+      consulta = productsCollection
+    }
+
+    // getDocs(consulta).then((res) => console.log(res.docs.data()))
+    getDocs(consulta).then((res) => {
+      let products = res.docs.map( doc => {
+        return {...doc.data(), id: doc.id}
+      })
+      setItems(products)
+    })
+
   }, [categoryName]);
 
-  // if (items.length === 0) {
-  //   return <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
-  //   <PacmanLoader 
-  //   color="red" 
-  //   cssOverride={stylesLoader}
-  //   size={20}
-  //   />
-  //   </div>
-  // }
-
-  // return <ItemList items={items} />;
 
   return <>
     {

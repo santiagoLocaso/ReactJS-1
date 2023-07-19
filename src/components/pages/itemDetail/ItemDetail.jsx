@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import CounterContainer from "../../common/counter/CounterContainer";
-import { products } from "../../../productsMock";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
-// import Swal from 'sweetalert2';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { db } from "../../../firabaseConfig";
+import { getDoc, collection, doc } from "firebase/firestore";
+
 
 const ItemDetail = () => {
 
@@ -15,32 +17,22 @@ const ItemDetail = () => {
   const [producto, setProducto] = useState({});
   
   const {id} = useParams()
-  const navigate= useNavigate()
 
   const totalQuantity = getQuantityById(id)
 
   useEffect(() => {
-    let productoSeleccionado = products.find((elemento) => elemento.id === +id);
-    const tarea = new Promise((res, rej) => {
-      res(productoSeleccionado)
-    });
-    tarea.then(res => setProducto(res) )
+    let productsCollection = collection(db, "products")
+    let productRef = doc(productsCollection, id)
+    getDoc(productRef).then( res => {
+      setProducto({...res.data(), id: res.id})
+    })
 
   }, [id]);
 
   const onAdd = (cantidad) => {
     let productCart = {...producto, quantity:cantidad}
     addToCart(productCart)
-    // //alert
-    // Swal.fire({
-    //   position: 'center',
-    //   icon: 'success',
-    //   title: 'Producto agregado al carrito!',
-    //   showConfirmButton: false,
-    //   timer: 1500
-    // })
 
-    //toast
     toast.success('Producto agregado al carrito', {
       position: "bottom-right",
       autoClose: 5000,
@@ -61,8 +53,26 @@ const ItemDetail = () => {
         <h4 style={{fontSize: "25px"}}>$ {producto.price}</h4>
       </div>
 
-      <CounterContainer stock={producto.stock} onAdd={onAdd} initial={totalQuantity} />
-      {/* llamar al componente del toast para que funcione*/}
+      {
+        producto.stock > 0 && 
+        (typeof(totalQuantity) === "undefined" || producto.stock > totalQuantity ) && (
+        <CounterContainer 
+        stock={producto.stock} 
+        onAdd={onAdd} 
+        initial={totalQuantity} 
+        /> 
+      )}
+
+      {
+        producto.stock === 0 && <h2 style={{display:"flex", justifyContent:"center"}}>No hay stock!</h2>
+      }
+
+      {
+        typeof(totalQuantity) !== "undefined" && 
+        totalQuantity === producto.stock && (
+        <h2 style={{display:"flex", justifyContent:"center"}}>Stock agotado!</h2> 
+      )}
+
       <ToastContainer />
     </div>
   );

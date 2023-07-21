@@ -1,5 +1,7 @@
 import { useContext } from "react"
 import { CartContext } from "../../../context/CartContext"
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import "./CartContainer.css"
 import Swal from "sweetalert2"
@@ -17,7 +19,6 @@ const CartContainer = () => {
       confirmButtonText: 'Si',
       denyButtonText: `No`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         clearCart()
         Swal.fire('Productos eliminados!', '', 'success')
@@ -36,16 +37,20 @@ const CartContainer = () => {
                 <h5 className="productDesc">$ {element.price}</h5>
                 <h5 className="productDesc">{element.quantity}</h5>
                 <img src={element.img} alt="" />
-                <button onClick={()=>deleteById(element.id)}>eliminar</button>
+                <button onClick={()=>deleteById(element.id)}>
+                  <IconButton aria-label="delete">
+                    <DeleteIcon />
+                  </IconButton>
+                </button>
               </div>
             })
           }
 
           {
-            cart.length > 0 && <button onClick={vaciar}>Vaciar carrito</button>
+            cart.length > 0 && <button className="vaciar" onClick={vaciar}>Vaciar carrito</button>
           }
 
-          <h5>Total de la compra: ${total}</h5>
+          <h5 style={{fontSize:"20px"}}>Total de la compra: ${total}</h5>
 
       </div>
     )

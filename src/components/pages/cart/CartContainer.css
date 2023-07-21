@@ -24,17 +24,25 @@
         margin-right: 10px;
       }
   
-  button {
-    background-color: #dc3545;
+  .vaciar {
+    background-color: gray;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     padding: 5px 10px;
+    margin-bottom: 15px;
     cursor: pointer;
+    font-size: 17px;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
   }
   
   button:hover {
-    background-color: #c82333;
+    background-color: #dc3545 ;
+    border-radius: 25px;
   }
   
   .cartSection {

@@ -3,7 +3,7 @@ import { Skeleton } from "@mui/material";
 import ProductCard from "../../common/productCard/ProductCard";
 
 const ItemList = ({ items }) => {
-  let arr = [1, 2, 3, 4, 5, 6];
+  let arr = [1, 2];
 
   return (
     <div>
@@ -24,10 +24,14 @@ const ItemList = ({ items }) => {
         : arr.map((e) => {
           return (
           <div key={e}>
-            <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-            <Skeleton variant="rectangular" width={100} height={40} />
-            <Skeleton variant="rectangular" width={210} height={60} />
-            <Skeleton variant="rounded" width={210} height={60} />  
+            <Skeleton variant="rectangular" width={345} height={200} sx={{ borderRadius: '8px 8px 0 0' }} />
+            <div style={{ padding: '16px', textAlign: 'center' }}>
+              <Skeleton variant="text" width={160} height={24} sx={{ marginBottom: '8px' }} />
+              <Skeleton variant="text" width={200} height={18} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+              <Skeleton variant="rectangular" width={120} height={36} />
+            </div>
           </div>
         )})
         }

@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
+import Add from '@mui/icons-material/Add';
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
+import "./Counter.css";
+
 const Counter = ( {contador, sumar, restar, onAdd} ) => {
 
   return (
-    <div style={{padding: "40px", display:"flex", flexDirection:"column", alignItems:"center"}}>
-        <button onClick={sumar} style={{ 
-          backgroundColor: 'blue', color: 'white', padding: '10px 20px', borderRadius: '5px', border: 'none', cursor: 'pointer',
-          }}>
-            sumar
+    <div style={{padding: "40px", display:"flex",justifyContent:"center", flexDirection:"row", alignItems:"center"}}>
+        <button className='restButton' onClick={restar}>
+            <HorizontalRuleIcon />
         </button>
-        <h3>{contador}</h3>
-        <button onClick={restar} style={{ 
-          backgroundColor: 'blue', color: 'white', padding: '10px 20px', borderRadius: '5px', border: 'none', cursor: 'pointer',
-          }}>
-            restar
+        <h3 style={{padding:"5px"}}>{contador}</h3>
+        <button className='addProduct' onClick={sumar}>
+            <Add />
         </button>
-        <button onClick={()=>onAdd(contador)} style={{ 
-          backgroundColor: 'blue', color: 'white', padding: '10px 20px', margin:"15px", borderRadius: '5px', border: 'none', cursor: 'pointer',
-          }}>
-            Agregar al carrito
+        <button className="agregarCarrito" onClick={()=>onAdd(contador)}>
+            {<AddShoppingCartIcon />} Comprar
         </button>
     </div>
   )

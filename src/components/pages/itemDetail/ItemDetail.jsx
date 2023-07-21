@@ -4,10 +4,16 @@ import { useParams } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PacmanLoader from "react-spinners/PacmanLoader";
+const stylesLoader = {
+  display:"flex", justifyContent: "center", alignItems: "center", height: "100vh"};
+
 
 import { db } from "../../../firabaseConfig";
 import { getDoc, collection, doc } from "firebase/firestore";
 
+
+import "./ItemDetail.css"
 
 const ItemDetail = () => {
 
@@ -15,19 +21,45 @@ const ItemDetail = () => {
 
   
   const [producto, setProducto] = useState({});
+
+
+  const [isLoading, setIsLoading] = useState(true);
+
   
   const {id} = useParams()
 
   const totalQuantity = getQuantityById(id)
 
-  useEffect(() => {
-    let productsCollection = collection(db, "products")
-    let productRef = doc(productsCollection, id)
-    getDoc(productRef).then( res => {
-      setProducto({...res.data(), id: res.id})
-    })
+  // ----------------------------------------------------------------
 
+  useEffect(() => {
+    let productRef = doc(db, "products", id);
+    getDoc(productRef).then((res) => {
+      setProducto({ ...res.data(), id: res.id });
+      setIsLoading(false);
+    });
+
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(loadingTimer);
   }, [id]);
+
+  // useEffect(() => {
+  //   let productRef = doc(db, "products", id);
+  //   getDoc(productRef).then((res) => {
+  //     setProducto({ ...res.data(), id: res.id });
+  //   });
+  // }, [id]);
+
+  // if (!producto.id) {
+  //   return (
+  //     <div style={{  display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
+  //       <PacmanLoader color="red" cssOverride={stylesLoader} size={20} />
+  //     </div>
+  //   );
+  // }
 
   const onAdd = (cantidad) => {
     let productCart = {...producto, quantity:cantidad}
@@ -45,36 +77,56 @@ const ItemDetail = () => {
       });
   };
 
-  return (
-    <div>
-      <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-        <h2 style={{padding: "20px"}}>{producto.title}</h2>
-        <img style={{width: "20%"}} src={producto.img} alt={producto.title} />
-        <h4 style={{fontSize: "25px"}}>$ {producto.price}</h4>
+  //----------------------------------------------------------------
+
+  if (isLoading) {
+    return (
+      <div style={stylesLoader}>
+        <PacmanLoader color="red" size={20} />
       </div>
+    );
+  }
 
-      {
-        producto.stock > 0 && 
-        (typeof(totalQuantity) === "undefined" || producto.stock > totalQuantity ) && (
-        <CounterContainer 
-        stock={producto.stock} 
-        onAdd={onAdd} 
-        initial={totalQuantity} 
-        /> 
-      )}
+  //----------------------------------------------------------------
 
-      {
-        producto.stock === 0 && <h2 style={{display:"flex", justifyContent:"center"}}>No hay stock!</h2>
-      }
+  return (
+    
+    <div className="card-container">
+      <div className="card">
+          <div className="product-container">
+            <div className="product-image-container">
+              <img className="product-image" src={producto.img} alt={producto.title} />
+            </div>
+            <div className="product-info-container">
+              <h2>{producto.title}</h2>
+              <h3 className="product-description">{producto.description}</h3>
+              <h4 className="product-price">$ {producto.price}</h4>
+            </div>
+          {
+            producto.stock > 0 && 
+            (typeof(totalQuantity) === "undefined" || producto.stock > totalQuantity ) && (
+            <CounterContainer 
+            className="counter-container"
+            stock={producto.stock} 
+            onAdd={onAdd} 
+            initial={totalQuantity} 
+            /> 
+          )}
 
-      {
-        typeof(totalQuantity) !== "undefined" && 
-        totalQuantity === producto.stock && (
-        <h2 style={{display:"flex", justifyContent:"center"}}>Stock agotado!</h2> 
-      )}
+          {
+            producto.stock === 0 && <h2 className="stock-message">No hay stock!</h2>
+          }
 
-      <ToastContainer />
+          {
+            typeof(totalQuantity) !== "undefined" && 
+            totalQuantity === producto.stock && (
+            <h2 className="stock-message">Stock agotado!</h2> 
+          )}
+          <ToastContainer />
+        </div>
+      </div>
     </div>
+    
   );
 };
 

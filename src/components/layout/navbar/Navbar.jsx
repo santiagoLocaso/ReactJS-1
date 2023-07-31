@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 
 import CartWidget from "../../common/cartWidget/CartWidget";
 import "./Navbar.css";
+import SearchBar from "../../common/searchBar/SearchBar";
+
 const Navbar = () => {
   return (
-    <div>
-      <div>
-        <div className={"containerNavbar"}>
+      <div className="navbarContainer">
+        <div className="containerNavbar">
           <Link to="/" style={{textDecoration: "none", color: "black", fontSize: "30px"}}>
             <h4 >TecnoLomas</h4>
           </Link>
@@ -20,8 +21,8 @@ const Navbar = () => {
 
           <CartWidget />
         </div>
+        <SearchBar /> 
       </div>
-    </div>
   );
 };
 

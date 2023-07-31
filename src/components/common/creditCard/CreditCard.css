@@ -1,0 +1,146 @@
+/* Estilos para la tarjeta */
+.tarjeta {
+    width: 100%;
+    position: relative;
+    color: #fff;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    cursor: pointer;
+    z-index: 2;
+    height: 315px;
+  }
+  
+  .tarjeta.active {
+    transform: rotateY(180deg);
+  }
+  
+  .tarjeta > div {
+    padding: 30px;
+    border-radius: 15px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* box-shadow: 0 10px 10px 0 rgba(90, 116, 148, 0.3); */
+  }
+  
+  /* Estilos para el frente de la tarjeta */
+  .delantera {
+    background: linear-gradient(to right, #43c6ac, #191654);
+    background-size: cover;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .delantera .logo-marca {
+    text-align: right;
+    min-height: 50px;
+  }
+  
+  .delantera .logo-marca img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 80px;
+  }
+  
+  .delantera .chip {
+    width: 100%;
+    max-width: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .delantera .grupo .label {
+    font-size: 16px;
+    color: #686868;
+    margin-bottom: 5px;
+  }
+  
+  .delantera .grupo .numero,
+  .delantera .grupo .nombre,
+  .delantera .grupo .expiracion {
+    color: #fff;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  
+  .delantera .flexbox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para la parte trasera de la tarjeta */
+  .trasera {
+    background: linear-gradient(to right, #43c6ac, #191654);
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+  
+  .trasera .barra-magnetica {
+    height: 40px;
+    background: #000;
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0;
+  }
+  
+  .trasera .datos {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .trasera .datos p {
+    margin-bottom: 5px;
+  }
+  
+  .trasera .datos #firma {
+    width: 70%;
+  }
+  
+  .trasera .datos #firma .firma {
+    height: 35px;
+    background: repeating-linear-gradient(skyblue 0, skyblue 5px, orange 5px, orange 10px);
+  }
+  
+  .trasera .datos #firma .firma p {
+    line-height: 40px;
+    font-family: 'Liu Jian Mao Cao', cursive;
+    color: #000;
+    font-size: 30px;
+    padding: 0 10px;
+    text-transform: capitalize;
+  }
+  
+  .trasera .datos #ccv {
+    width: 20%;
+  }
+  
+  .trasera .datos #ccv .ccv {
+    background: #fff;
+    height: 30px;
+    color: #000;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+  }
+  
+  .trasera .leyenda {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .trasera .link-banco {
+    font-size: 14px;
+    color: #fff;
+  }

@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Skeleton } from "@mui/material";
 import ProductCard from "../../common/productCard/ProductCard";
+import {products} from "../../../productsMock";
 
 const ItemList = ({ items }) => {
-  let arr = [1, 2];
+  let arr = [products];
 
   return (
     <div>

@@ -20,7 +20,6 @@ const ItemListContainer = () => {
       consulta = productsCollection
     }
 
-    // getDocs(consulta).then((res) => console.log(res.docs.data()))
     getDocs(consulta).then((res) => {
       let products = res.docs.map( doc => {
         return {...doc.data(), id: doc.id}

@@ -46,21 +46,6 @@ const ItemDetail = () => {
     return () => clearTimeout(loadingTimer);
   }, [id]);
 
-  // useEffect(() => {
-  //   let productRef = doc(db, "products", id);
-  //   getDoc(productRef).then((res) => {
-  //     setProducto({ ...res.data(), id: res.id });
-  //   });
-  // }, [id]);
-
-  // if (!producto.id) {
-  //   return (
-  //     <div style={{  display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
-  //       <PacmanLoader color="red" cssOverride={stylesLoader} size={20} />
-  //     </div>
-  //   );
-  // }
-
   const onAdd = (cantidad) => {
     let productCart = {...producto, quantity:cantidad}
     addToCart(productCart)

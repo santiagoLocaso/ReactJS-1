@@ -1,6 +1,5 @@
 export let products = [
     {
-        id: 1,
         title: "Teclado Redragon",
         price: 15000,
         stock: 4,
@@ -9,7 +8,6 @@ export let products = [
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688923270/a833e147d74918dc6f40e8eff0f1_ii9ifx.jpg"
     },
     {
-        id: 2,
         title: "Mouse Redragon",
         price: 12000,
         stock: 5,
@@ -18,7 +16,6 @@ export let products = [
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688922999/download_z8pw30.jpg"
     },
     {
-        id: 3,
         title: "Monitor samsung 27'",
         price: 45000,
         stock: 10,
@@ -27,7 +24,6 @@ export let products = [
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688923251/7e21c5240c13f2d32ad3842cd3e8_mnv63e.jpg"
     },
     {
-        id: 4,
         title: "Notebook dell",
         price: 178000,
         stock: 5,
@@ -36,7 +32,6 @@ export let products = [
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688923185/download_q50qfj.jpg"
     },
     {
-        id: 5,
         title: "Auriculares Logitech",
         price: 12000,
         stock: 10,
@@ -45,7 +40,6 @@ export let products = [
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688943122/download_n4prru.jpg"
     },
     {
-        id: 6,
         title: "Notebook Lenovo",
         price: 45000,
         stock: 10,

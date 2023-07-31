@@ -103,7 +103,7 @@ import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/fi
 import { Link } from "react-router-dom";
 
 import "./CheckoutContainer.css";
-import CreditCard from "../../common/creditCard/CreditCard";
+// import CreditCard from "../../common/creditCard/CreditCard";
 
 const CheckoutContainer = () => {
 

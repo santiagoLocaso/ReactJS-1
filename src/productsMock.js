@@ -4,7 +4,7 @@ export let products = [
         price: 15000,
         stock: 4,
         description: "Teclado Redragon mecanico con luces RGB",
-        category: "perifericos",
+        category: "teclados",
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688923270/a833e147d74918dc6f40e8eff0f1_ii9ifx.jpg"
     },
     {
@@ -12,7 +12,7 @@ export let products = [
         price: 12000,
         stock: 5,
         description: "Mouse Redragon con luces RGB",
-        category: "perifericos",
+        category: "mouse",
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688922999/download_z8pw30.jpg"
     },
     {
@@ -36,7 +36,7 @@ export let products = [
         price: 12000,
         stock: 10,
         description: "Auriculares Logitech inalambricos",
-        category: "perifericos",
+        category: "auriculares",
         img: "https://res.cloudinary.com/dlehfvwux/image/upload/v1688943122/download_n4prru.jpg"
     },
     {

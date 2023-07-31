@@ -32,6 +32,11 @@ const SearchBar = () => {
         };
       }, []);
 
+    const handleCloseDropdown = () => {
+        setSearchTerm("");
+        setFilteredProducts([]);
+    };
+
   return (
     <div className="searchContainer" ref={searchBarRef}>
         <input className="searchInput" type="text" placeholder="Buscar productos..." value={inputValue} onChange={handleSearch}/>
@@ -41,7 +46,7 @@ const SearchBar = () => {
                     {filteredProducts.length > 0 ? (
                         filteredProducts.map((product, index) => (
                             <li key={index} className="resultsItem">
-                                <Link to={`/itemDetail/${product.id}`} style={{textDecoration:"none", color:"black"}}>
+                                <Link to={`/category/${product.category}`} style={{textDecoration:"none", color:"black"}} onClick={handleCloseDropdown}>
                                     <h4>{product.title}</h4>
                                 </Link>
                             </li>

@@ -1,101 +1,3 @@
-// import { useContext, useState } from "react"
-// import { CartContext } from "../../../context/CartContext";
-// import { db } from "../../../firabaseConfig";
-// import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/firestore";
-// import { Link } from "react-router-dom";
-
-// import "./CheckoutContainer.css";
-
-// const CheckoutContainer = () => {
-
-//     const [orderId, setOrderId] = useState("")
-
-//     const requiredFields = ["name", "phone", "email"];
-
-//     const { cart, getTotalPrice } = useContext(CartContext)
-
-//     const [data, setData] = useState({
-//         name: "",
-//         phone: "",
-//         email: ""
-//     })
-
-//     const [showError, setShowError] = useState(false);
-
-//     let total = getTotalPrice()
-
-//     const handleSubmit = (event) => {
-//         event.preventDefault()
-
-//         if (!data.name || !data.phone || !data.email) {
-//             setShowError(true);
-//             return;
-//           }
-
-//         let order = {
-//             buyer: data,
-//             items: cart,
-//             total,
-//             date: serverTimestamp()
-//         }
-
-//         const ordersCollection = collection( db, "orders")
-//         addDoc(ordersCollection, order).then( res => setOrderId(res.id))
-
-
-//         cart.forEach( (product) => {
-//             updateDoc( doc(db, "products", product.id) , {stock: product.stock - product.quantity})
-//         });
-//     };
-
-
-//     const handleChange = (event) => {
-//         setData({...data, [event.target.name]: event.target.value})
-//         setShowError(false);
-//     };
-
-
-//   return (
-//     <div className="checkout-container">
-
-//         {orderId ? (
-//             <div className="order-summary">
-//                 <h1>Compra realizada con exito!</h1>
-//                 <h3>Gracias por elegirnos!</h3>
-//                 <h4>Su numero de orden es: {orderId}</h4>
-//                 <Link to="/" className="continue-shopping-link">Seguir comprando</Link>
-//             </div>
-//             ) : (
-//                 <form className="checkout-form" onSubmit={handleSubmit}>
-//                 <h1 className="checkout-title">Finalizar compra</h1>
-//                 {requiredFields.map((field) => (
-//                   <div className="form-group" key={field}>
-//                     <label className="form-label" htmlFor={field}>
-//                       {field.charAt(0).toUpperCase() + field.slice(1)}*
-//                     </label>
-//                     <input
-//                       className="checkout-input"
-//                       type="text"
-//                       placeholder={`Ingrese su ${field}`}
-//                       name={field}
-//                       onChange={handleChange}
-//                       value={data[field]} // Asignamos el valor del campo a data[field]
-//                     />
-//                     {data[field] === "" && (
-//                       <span className="error-message">*</span>
-//                     )}
-//                   </div>
-//                 ))}
-//                 {showError && <div className="error-message">Por favor, complete todos los campos obligatorios.</div>}
-//                 <button className="checkout-button" type="submit">Comprar</button>
-//               </form>
-//         )}
-//     </div>
-//   )
-// }
-
-// export default CheckoutContainer
-
 import { useContext, useState } from "react"
 import { CartContext } from "../../../context/CartContext";
 import { db } from "../../../firabaseConfig";
@@ -108,8 +10,9 @@ import "./CheckoutContainer.css";
 const CheckoutContainer = () => {
 
     const [orderId, setOrderId] = useState("")
+    const [setCheckoutCompleted] = useState(false);
 
-    const { cart, getTotalPrice } = useContext(CartContext)
+    const { cart, getTotalPrice, clearCart } = useContext(CartContext)
 
     const [data, setData] = useState({
         name: "",
@@ -129,8 +32,14 @@ const CheckoutContainer = () => {
             date: serverTimestamp()
         }
 
-        const ordersCollection = collection( db, "orders")
-        addDoc(ordersCollection, order).then( res => setOrderId(res.id))
+        // const ordersCollection = collection( db, "orders")
+        // addDoc(ordersCollection, order).then( res => setOrderId(res.id))
+
+        const ordersCollection = collection(db, "orders");
+        addDoc(ordersCollection, order).then((res) => {
+            setOrderId(res.id);
+            setCheckoutCompleted(true);
+        });
 
 
         cart.forEach((product) => {
@@ -140,19 +49,54 @@ const CheckoutContainer = () => {
         });
     };
 
+    const handleContinueShopping = () => {
+        clearCart();
+    };
+
 
     const handleChange = (event) => {
         setData({...data, [event.target.name]: event.target.value})
+    };
+
+    const generateMonthOptions = () => {
+        const months = [];
+        for (let i = 1; i <= 12; i++) {
+            months.push(i < 10 ? `0${i}` : `${i}`);
+        }
+        return months;
+    };
+
+    const generateYearOptions = () => {
+        const currentYear = new Date().getFullYear();
+        const years = [];
+        for (let i = currentYear; i <= currentYear + 10; i++) {
+            years.push(i);
+        }
+        return years;
     };
 
   return (
     <div className="form-container">
         {orderId ? (
         <div className="order-summary">
-          <h1>Compra realizada con exito!</h1>
-          <h3>Gracias por elegirnos!</h3>
-          <h4>Su numero de orden es: {orderId}</h4>
-          <Link to="/" className="continue-shopping-link">Seguir comprando</Link>
+          <h1 className="order-title">Compra realizada con éxito!</h1>
+          <h3 className="order-subtitle">Gracias por elegirnos</h3>
+          <h4>Su número de orden es: {orderId}</h4>
+          <div>
+            <h3>Resumen de la compra:</h3>
+            {cart.map((product) => (
+              <div key={product.id}>
+                <h4>{product.title}</h4>
+                <div className="image-container">
+                    <img src={product.img} alt={product.title} />
+                </div>
+                <p>Cantidad: {product.quantity}</p>
+                <p>Precio unitario: ${product.price}</p>
+              </div>
+            ))}
+            <h5>Total de la compra: ${total}</h5>
+          </div>
+          <Link to="/" className="continue-shopping-link" onClick={handleContinueShopping}>Seguir comprando</Link>
         </div>
       ) : ( 
         <div>
@@ -168,7 +112,6 @@ const CheckoutContainer = () => {
                         maxLength="19"
                         autoComplete="off"
                         name="numeroTarjeta"
-                        onChange={(e) => setData({ ...data, numeroTarjeta: e.target.value })}
                     />
                 </div>
                 <div className="grupo">
@@ -200,21 +143,23 @@ const CheckoutContainer = () => {
                         <label htmlFor="selectMes">Expiración</label>
                         <div className="flexbox">
                             <div className="grupo-select">
-                                {/* <select name="mes" id="selectMes" onChange={(e) => setData({ ...data, expiracion: e.target.value })} value={data.expiracion}>
+                                <select name="mes">
                                     <option disabled selected>Mes</option>
-                                </select> */}
-                                <select name="mes" onChange={handleChange}>
-                                    <option disabled selected>Mes</option>
-                                    {/* Opciones para el mes */}
+                                    {generateMonthOptions().map((month) => (
+                                        <option key={month} value={month}>
+                                            {month}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                             <div className="grupo-select">
-                                {/* <select name="year" id="selectYear" onChange={(e) => setData({ ...data, expiracion: e.target.value })} value={data.expiracion}>
+                                <select name="year">
                                     <option disabled selected>Año</option>
-                                </select> */}
-                                <select name="year" onChange={handleChange}>
-                                    <option disabled selected>Año</option>
-                                    {/* Opciones para el año */}
+                                    {generateYearOptions().map((year) => (
+                                        <option key={year} value={year}>
+                                            {year}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                         </div>
@@ -225,7 +170,6 @@ const CheckoutContainer = () => {
                             type="text"
                             maxLength="3"
                             name="ccv"
-                            onChange={handleChange}
                         />
                     </div>
                 </div>

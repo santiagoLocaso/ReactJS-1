@@ -10,7 +10,7 @@ const stylesLoader = {
 
 
 import { db } from "../../../firabaseConfig";
-import { getDoc, collection, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 
 
 import "./ItemDetail.css"
@@ -85,6 +85,7 @@ const ItemDetail = () => {
             <div className="product-info-container">
               <h2>{producto.title}</h2>
               <h3 className="product-description">{producto.description}</h3>
+              <p>Stock disponible: {producto.stock}</p>
               <h4 className="product-price">$ {producto.price}</h4>
             </div>
           {

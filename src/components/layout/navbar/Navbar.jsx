@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
 
 import CartWidget from "../../common/cartWidget/CartWidget";
 import "./Navbar.css";
@@ -8,6 +9,7 @@ import SearchBar from "../../common/searchBar/SearchBar";
 const Navbar = () => {
 
   const [showPerifericosDropdown, setShowPerifericosDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handlePerifericosClick = () => {
     setShowPerifericosDropdown(!showPerifericosDropdown);
@@ -29,6 +31,10 @@ const Navbar = () => {
 
   const handleCloseDropdown = () => {
     setShowPerifericosDropdown(false);
+  };
+
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -69,6 +75,10 @@ const Navbar = () => {
             <Link to="/category/monitores" className="links">Monitores</Link>
             <Link to="/category/notebooks" className="links">Notebooks</Link>
           </ul>
+
+          <button className="hamburgerButton" onClick={handleMobileMenuToggle}>
+              <MenuIcon/>
+          </button>
 
           <CartWidget />
         </div>

@@ -7,6 +7,11 @@ import "./Counter.css";
 
 const Counter = ( {contador, sumar, restar, onAdd} ) => {
 
+  // const handleAddToCart = () => {
+  //   sumar();
+  //   onAdd(contador);
+  // };
+
   return (
     <div style={{padding: "40px", display:"flex",justifyContent:"center", flexDirection:"row", alignItems:"center"}}>
         <button className='restButton' onClick={restar}>
@@ -17,6 +22,7 @@ const Counter = ( {contador, sumar, restar, onAdd} ) => {
             <Add />
         </button>
         <button className="agregarCarrito" onClick={()=>onAdd(contador)}>
+        {/* <button className="agregarCarrito" onClick={handleAddToCart}> */}
             {<AddShoppingCartIcon />} Comprar
         </button>
     </div>

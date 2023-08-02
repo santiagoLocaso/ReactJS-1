@@ -1,10 +1,15 @@
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./routes/AppRouter";
+import CartContextComponent from "./context/CartContext";
+
 function App() {
   return (
-    <div>
-      <h2>Navbar</h2>
-      <h3>mas navbar</h3>
-    </div>
-  )
+    <BrowserRouter>
+    <CartContextComponent>
+      <AppRouter />
+    </CartContextComponent>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

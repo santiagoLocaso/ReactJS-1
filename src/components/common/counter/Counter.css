@@ -1,0 +1,46 @@
+.agregarCarrito {
+    display: flex;
+    margin: 15px;
+    align-items: center; 
+    background-color: gray; 
+    color: white;
+    padding: 10px 30px;
+    font-size: 17px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer
+}
+
+.agregarCarrito:hover {
+    background-color: #dc3545;
+}
+
+.addProduct {
+    background-color: gray;
+    color: white;
+    width: 35px;
+    height: 35px;
+    padding:5px;
+    border-radius: 25px; 
+    border: none; 
+    cursor: pointer
+}
+
+.addProduct:hover {
+    background-color: #dc3545;
+}
+
+.restButton {
+    width: 35px;
+    height: 35px;
+    background-color: gray;
+    color: white;
+    padding:5px;
+    border-radius: 25px; 
+    border: none; 
+    cursor: pointer
+}
+
+.restButton:hover {
+    background-color: #dc3545;
+}

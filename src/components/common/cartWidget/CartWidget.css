@@ -1,0 +1,11 @@
+.cart {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .cart {
+        padding-right: 0;
+    }
+}

@@ -208,3 +208,36 @@
   object-fit: cover;
   margin-right: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .checkoutContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5% 5% 5%;
+  }
+
+  .productCheckout{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+  }
+
+  .cartColumn{
+    margin-top: 15%;
+  }
+
+  .cartColumn img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .productDesc {
+    margin-bottom: 10px;
+  }
+
+  .form-container{
+    padding: 0;
+    width: 100%;
+  }
+}

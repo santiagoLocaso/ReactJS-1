@@ -10,10 +10,12 @@ const Navbar = () => {
 
   const [showPerifericosDropdown, setShowPerifericosDropdown] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  
 
   const handlePerifericosClick = () => {
     setShowPerifericosDropdown(!showPerifericosDropdown);
   };
+
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -29,17 +31,31 @@ const Navbar = () => {
     };
   }, [showPerifericosDropdown]);
 
+
   const handleCloseDropdown = () => {
     setShowPerifericosDropdown(false);
   };
+
 
   const toggleMenu = () => {
     setIsOpen((open) => !open);
   }
 
-  // const handleMobileMenuToggle = () => {
-  //   setIsMobileMenuOpen(!isMobileMenuOpen);
-  // };
+
+  const handleWindowResize = () => {
+    if (window.innerWidth > 768) {
+      setIsOpen(false);
+    }
+  };
+
+  
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
 
   return (
       <div className="navbarContainer">
@@ -48,19 +64,51 @@ const Navbar = () => {
             <h4 >TecnoLomas</h4>
           </Link>
           <button className="hamburgerButton" onClick={toggleMenu}>
-              <MenuIcon/>
+              <MenuIcon fontSize="large" />
           </button>
-
-          <ul className={`categories ${isOpen ? "is-open" : ""}`}>
-            <Link to="/" className="links">Inicio</Link>
-            {/* <Link to="/category/perifericos" className="links">Perifericos</Link> */}
+          {isOpen && (
+            <div className="menuBox">
+              <ul className={`categories ${isOpen ? "is-open" : ""}`}>
+                <Link to="/" className="links" onClick={() => setIsOpen(false)}>Inicio</Link>
+                <li className="dropdown">
+                  <div className={`links perifericos-link ${showPerifericosDropdown ? 'active' : ''}`}
+                    onClick={handlePerifericosClick}>
+                    <Link style={{textDecoration:"none", color:"black"}}>Periféricos</Link>
+                  </div>
+                  {showPerifericosDropdown && (
+                    <ul className={`dropdown-content ${showPerifericosDropdown ? 'active' : ''}`}>
+                      <li>
+                        <Link to="/category/teclados" className="links" onClick={handleCloseDropdown}>
+                          Teclados
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/category/mouse" className="links" onClick={handleCloseDropdown}>
+                          Mouse
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/category/auriculares" className="links" onClick={handleCloseDropdown}>
+                          Auriculares
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+                <Link to="/category/monitores" className="links">Monitores</Link>
+                <Link to="/category/notebooks" className="links">Notebooks</Link>
+              </ul>
+            </div>
+          )}
+          <ul className="categories">
+            <Link to="/" className="links" onClick={() => setIsOpen(false)}>Inicio</Link>
             <li className="dropdown">
             <div className={`links perifericos-link ${showPerifericosDropdown ? 'active' : ''}`}
               onClick={handlePerifericosClick}>
               <Link style={{textDecoration:"none", color:"black"}}>Periféricos</Link>
             </div>
             {showPerifericosDropdown && (
-              <ul className="dropdown-content">
+              <ul className={`dropdown-content ${showPerifericosDropdown ? 'active' : ''}`}>
                 <li>
                   <Link to="/category/teclados" className="links" onClick={handleCloseDropdown}>
                     Teclados
@@ -85,40 +133,6 @@ const Navbar = () => {
 
           <CartWidget />
         </div>
-        {isOpen && (
-        <div className="menuBox">
-          <ul className="categories">
-            <Link to="/" className="links">Inicio</Link>
-            <li className="dropdown">
-              <div className={`links perifericos-link ${showPerifericosDropdown ? 'active' : ''}`}
-                onClick={handlePerifericosClick}>
-                <Link style={{textDecoration:"none", color:"black"}}>Periféricos</Link>
-              </div>
-              {showPerifericosDropdown && (
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/category/teclados" className="links" onClick={handleCloseDropdown}>
-                      Teclados
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/category/mouse" className="links" onClick={handleCloseDropdown}>
-                      Mouse
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/category/auriculares" className="links" onClick={handleCloseDropdown}>
-                      Auriculares
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <Link to="/category/monitores" className="links">Monitores</Link>
-            <Link to="/category/notebooks" className="links">Notebooks</Link>
-          </ul>
-        </div>
-      )}
         <SearchBar /> 
       </div>
   );

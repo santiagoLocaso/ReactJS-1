@@ -1,3 +1,8 @@
+.navbarContainer {
+  background-color: #8f8f8f;
+  padding: 15px;
+}
+
 .containerNavbar {
   width: 100%;
   height: 10vh;
@@ -14,6 +19,8 @@
   justify-content: space-evenly;
   align-items: center;
   gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .categories .links {
@@ -45,15 +52,24 @@
   flex-direction: column;
   position: absolute;
   top: 100%;
-  left: 0;
-  z-index: 1;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background-color: #8f8f8f;
   border-radius: 4px;
   min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 10px;
   list-style: none;
+  transform-origin: top center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.dropdown-content.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .dropdown-content li {
@@ -68,7 +84,7 @@
 }
 
 .dropdown-content li a:hover {
-  background-color: #f2f2f2;
+  background-color: #8f8f8f;
 }
 
 .categories .links.perifericos-link::after {
@@ -83,10 +99,6 @@
 
 .hamburgerButton {
   display: none;
-  /* font-size: 20px;
-  background: none;
-  border: none;
-  cursor: pointer; */
 }
 
 @media screen and (max-width: 768px) {
@@ -107,10 +119,8 @@
 
   .hamburgerButton {
     display: block;
-    background-color: transparent;
     border: none;
     cursor: pointer;
-    padding: 5px;
   }
 
   .menuBox {
@@ -120,14 +130,15 @@
     left: 0;
     width: 100%;
     padding: 10px;
-    display: flex;
-    justify-content: center;
+    z-index: 2;
   }
 
   .menuBox ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0;
+    margin: 0;
   }
 
   .menuBox .links {
@@ -137,6 +148,7 @@
     padding: 10px 20px;
     display: flex;
     justify-content: center;
+    transition: background-color 0.3s ease;
   }
 
   .menuBox .links.perifericos-link::after {
@@ -144,52 +156,5 @@
     margin-left: 5px;
     font-size: 16px;
   }
-
-  .menuBox .links:hover {
-    background-color: #f2f2f2;
-  }
-  /* .hamburgerButton {
-    display: block;
-  }
-
-  .categories {
-    display: flex;
-  }
-
-  .categories.mobileMenuOpen {
-    display: none;
-  }
-
-  .dropdown {
-    display: inline-block; /* Muestra el menú desplegable en pantallas pequeñas */
-  /* } */
-
-  /* .dropdown-content {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    list-style: none;
-    display: none; /* Oculta el contenido del menú desplegable por defecto */
-  /* } */
-
-  /* .dropdown-content.show {
-    display: flex; /* Muestra el contenido del menú desplegable cuando está activo */
-    /* flex-direction: column;
-  } */
-
-  /* .categories .links.perifericos-link::after,
-  .categories .links.perifericos-link.active::after {
-    content: ""; /* Elimina el ícono en pantallas pequeñas, ya que se muestra el menú desplegable */
-    /* margin-left: 0;
-    font-size: 0; */ 
-  /* } */ 
 
 } 

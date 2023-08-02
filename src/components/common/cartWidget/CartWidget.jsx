@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { CartContext } from '../../../context/CartContext';
 
+import "./CartWidget.css"
+
 const CartWidget = () => {
 
     const {getTotalQuantity} = useContext(CartContext)
@@ -11,7 +13,7 @@ const CartWidget = () => {
     return (
         <>
             <Link to="/cart">
-                <div style={{display: "flex", justifyContent: "flex-end", paddingRight: "100px"}}>
+                <div className="cart">
                     <Badge badgeContent={total} color="primary">
                         <ShoppingCartIcon style={{color:"black"}} fontSize='large'/>
                     </Badge>

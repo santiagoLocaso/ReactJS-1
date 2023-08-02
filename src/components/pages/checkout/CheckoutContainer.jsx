@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { CartContext } from "../../../context/CartContext";
 import { db } from "../../../firabaseConfig";
 import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/firestore";
+import Divider from '@mui/material/Divider';
 import { Link } from "react-router-dom";
 
 import "./CheckoutContainer.css";
@@ -77,27 +78,14 @@ const CheckoutContainer = () => {
 
   return (
     <div className="checkoutContainer">
-        {/* <div className="cartColumn">
-            <h2 style={{textAlign:"center"}}>Tus productos</h2>
-            {cart.map((product) => (
-                <div className="productCheckout" key={product.id}>
-                    <h4 className="productDesc">{product.title}</h4>
-                    <h5 className="productDesc">$ {product.price}</h5>
-                    <h5 className="productDesc">unidades: {product.quantity}</h5>
-                    <img src={product.img} alt="" />
-                </div>
-            ))}
-            <h5 style={{textAlign:"center", fontSize:"20px"}}>Total de la compra: ${total}</h5>
-        </div>
-        <div className="formColumn">
-        <div className="form-container"> */}
-            {showOrderSummary ? (
+        {showOrderSummary ? (
             <div className="order-summary">
             <h1 className="order-title">Compra realizada con éxito!</h1>
             <h3 className="order-subtitle">Gracias por elegirnos</h3>
             <h4>Su número de orden es: {orderId}</h4>
+            <Divider variant="middle"/>
                 <div>
-                    <h3>Resumen de la compra:</h3>
+                    <h3 style={{textAlign:"center"}}>Resumen de la compra:</h3>
                     {cart.map((product) => (
                     <div key={product.id}>
                         <h4>{product.title}</h4>
@@ -109,6 +97,7 @@ const CheckoutContainer = () => {
                     </div>
                     ))}
                     <h5>Total de la compra: ${total}</h5>
+                    <Divider variant="middle"/>
                 </div>
                 <Link to="/" className="continue-shopping-link" onClick={handleContinueShopping}>Seguir comprando</Link>
             </div>

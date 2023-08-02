@@ -15,7 +15,7 @@ const ProductCard = ({ elemento = true }) => {
       </div>
       <div className="productCard-actions">
         <Link to={`/itemDetail/${elemento.id}`}>
-          <button>Ver más</button>
+          <button className="view-more">Ver más</button>
         </Link>
       </div>
     </div>

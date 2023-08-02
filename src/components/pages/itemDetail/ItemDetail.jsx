@@ -30,8 +30,6 @@ const ItemDetail = () => {
 
   const totalQuantity = getQuantityById(id)
 
-  // ----------------------------------------------------------------
-
   useEffect(() => {
     let productRef = doc(db, "products", id);
     getDoc(productRef).then((res) => {
@@ -62,8 +60,6 @@ const ItemDetail = () => {
       });
   };
 
-  //----------------------------------------------------------------
-
   if (isLoading) {
     return (
       <div style={stylesLoader}>
@@ -71,8 +67,6 @@ const ItemDetail = () => {
       </div>
     );
   }
-
-  //----------------------------------------------------------------
 
   return (
     

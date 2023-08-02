@@ -40,11 +40,14 @@ const CartContainer = () => {
                 <h5 className="productDesc">$ {element.price}</h5>
                 <h5 className="productDesc">{element.quantity}</h5>
                 <img src={element.img} alt="" />
-                <button onClick={() => deleteById(element.id)}>
+                {/* <button onClick={() => deleteById(element.id)}>
                 <IconButton aria-label="delete">
                   <DeleteIcon />
                 </IconButton>
-                </button>
+                </button> */}
+                <IconButton aria-label="delete" onClick={() => deleteById(element.id)}>
+                  <DeleteIcon />
+                </IconButton>
               </div>
             );
           })}

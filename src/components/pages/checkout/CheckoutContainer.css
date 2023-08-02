@@ -164,17 +164,6 @@
   text-decoration: underline;
 }
 
-/* .checkoutContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.cartColumn {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-} */
 .checkoutContainer {
   display: flex;
   justify-content: center;

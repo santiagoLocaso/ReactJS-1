@@ -6,7 +6,7 @@ const CounterContainer = ({ stock, onAdd, initial=1 }) => {
   const [contador, setContador] = useState(initial);
 
   const sumar = () => {
-    contador < stock ? setContador(contador + 1) : alert("cantidad maxima");
+    contador < stock ? setContador(contador + 1) : "";
   };
 
   const restar = () => {

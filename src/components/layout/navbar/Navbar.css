@@ -83,14 +83,72 @@
 
 .hamburgerButton {
   display: none;
-  font-size: 20px;
+  /* font-size: 20px;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 @media screen and (max-width: 768px) {
+
+  .categories {
+    display: none;
+  }
+
+  .categories.is-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerNavbar h4 {
+    display: block;
+    width: 100%;
+  }
+
   .hamburgerButton {
+    display: block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .menuBox {
+    background-color: #8f8f8f;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .menuBox ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menuBox .links {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .menuBox .links.perifericos-link::after {
+    content: "▶";
+    margin-left: 5px;
+    font-size: 16px;
+  }
+
+  .menuBox .links:hover {
+    background-color: #f2f2f2;
+  }
+  /* .hamburgerButton {
     display: block;
   }
 
@@ -104,9 +162,9 @@
 
   .dropdown {
     display: inline-block; /* Muestra el menú desplegable en pantallas pequeñas */
-  }
+  /* } */
 
-  .dropdown-content {
+  /* .dropdown-content {
     position: absolute;
     top: 100%;
     left: 50%;
@@ -120,17 +178,18 @@
     padding: 10px;
     list-style: none;
     display: none; /* Oculta el contenido del menú desplegable por defecto */
-  }
+  /* } */
 
-  .dropdown-content.show {
+  /* .dropdown-content.show {
     display: flex; /* Muestra el contenido del menú desplegable cuando está activo */
-    flex-direction: column;
-  }
+    /* flex-direction: column;
+  } */
 
-  .categories .links.perifericos-link::after,
+  /* .categories .links.perifericos-link::after,
   .categories .links.perifericos-link.active::after {
     content: ""; /* Elimina el ícono en pantallas pequeñas, ya que se muestra el menú desplegable */
-    margin-left: 0;
-    font-size: 0;
-  }
-}
+    /* margin-left: 0;
+    font-size: 0; */ 
+  /* } */ 
+
+} 

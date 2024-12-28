@@ -25,3 +25,7 @@
 ### Utilizacion de routes
 
 - Se utiliza react-router-dom para establecer las diferentes rutas del sitio, en este proyecto las rutas establecidas son; home (/), category (/category/:categoryName), detalle (/itemDetail/:id"), cart (/cart), checkout (/checkout) y dashboard (/dashboard), esta ultima se utiliza para cargar los datos de productos a la base de datos en firebase
+
+---
+
+### [Link del proyecto en vercel] (https://react-js-1-rho.vercel.app) 

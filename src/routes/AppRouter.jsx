@@ -5,15 +5,15 @@ import { routes } from "./routes";
 const AppRouter = () => {
   return (
     <Routes>
-    <Route element={<Layout />}>
-        {routes.map(({ id, path, Element}) =>(
-            <Route key={id} path={path} element={<Element/>}/>
+      <Route element={<Layout />}>
+        {routes.map(({ id, path, Element }) => (
+          <Route key={id} path={path} element={<Element />} />
         ))}
-    </Route>
+      </Route>
 
-    <Route path="*" element={<h1>404 not found</h1>} />
-  </Routes>
-  )
-}
+      <Route path="*" element={<h1>404 not found</h1>} />
+    </Routes>
+  );
+};
 
-export default AppRouter
+export default AppRouter;
